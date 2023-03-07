@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BankAccountService } from 'src/bank-account/bank-account.service';
 import { Repository } from 'typeorm';
 import { User } from '../entity/user.entity';
 
@@ -9,7 +8,6 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-    private bankAccountService: BankAccountService,
   ) {}
 
   findAll(): Promise<User[]> {
@@ -27,11 +25,6 @@ export class UserService {
   async getUserName(id: number): Promise<string> {
     const user = await this.findOneUser(id);
     return user.name;
-  }
-
-  async getAccounts(id: number): Promise<User> {
-    // get user with accounts
-    return this.bankAccountService.getAccounts(id);
   }
 
 }
