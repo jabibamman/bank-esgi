@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { BankAccountController } from './bank-account.controller';
-import { BankAccountService } from './bank-account.service';
+import { BankAccountController } from '../api/bank-account.controller';
+import { BankAccountService } from '../service/bank-account.service';
 import { BankAccount } from '../entity/bankaccount.entity';
 import { User } from 'src/entity/user.entity';
 

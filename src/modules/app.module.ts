@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UserController } from './user/user.controller';
-import { UserService } from './user/user.service';
-import { UserModule } from './user/user.module';
+import { AppController } from '../api/app.controller';
+import { AppService } from '../service/app.service';
+import { UserController } from '../api/user.controller';
+import { UserService } from '../service/user.service';
+import { UserModule } from './user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './entity/user.entity';
-import { BankAccount } from './entity/bankaccount.entity';
-import { BankAccountService } from './bank-account/bank-account.service';
-import { BankAccountController } from './bank-account/bank-account.controller';
+import { User } from '../entity/user.entity';
+import { BankAccount } from '../entity/bankaccount.entity';
+import { BankAccountService } from '../service/bank-account.service';
+import { BankAccountController } from '../api/bank-account.controller';
 
 const envDir = '.env';
 const dotenv = require('dotenv');

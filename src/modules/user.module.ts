@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../entity/user.entity';
-import { UserService } from './user.service';
-import { BankAccountService } from 'src/bank-account/bank-account.service';
-import { UserController } from './user.controller';
+import { UserService } from '../service/user.service';
+import { BankAccountService } from 'src/service/bank-account.service';
+import { UserController } from '../api/user.controller';
 import { BankAccount } from 'src/entity/bankaccount.entity';
 
 @Module({
