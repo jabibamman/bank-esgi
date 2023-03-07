@@ -6,5 +6,5 @@ export class BankAccount {
   id: number;
 
   @Column()
-  solde : number;
+  solde: number;
 }

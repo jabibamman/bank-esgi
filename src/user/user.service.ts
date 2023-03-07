@@ -15,7 +15,7 @@ export class UserService {
   }
 
   findOneUser(id: number): Promise<User> {
-    console.log("ici", this.usersRepository.findOneBy({ id }));
+    console.log('ici', this.usersRepository.findOneBy({ id }));
 
     return this.usersRepository.findOneBy({ id });
   }
@@ -31,7 +31,6 @@ export class UserService {
 
   async getAccounts(id: number): Promise<User> {
     console.log('getAccounts');
-    return this.findOneUser(id); 
+    return this.findOneUser(id);
   }
-
 }
