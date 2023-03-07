@@ -14,10 +14,13 @@ export class BankAccountService {
         return this.bankAccountRepository.find();
       }
 
-    async getAccountsFromUserId(id: number): Promise<BankAccount[]> {
-        console.log('getAccounts');
-        const accounts = await this.bankAccountRepository.find({ where: { userId: id } });
+    async getAccountFromId(id: number): Promise<BankAccount> {
+        const account = await this.bankAccountRepository.findOne({ where: { id } });
+        return account;
+    } 
 
+    async getAccountsFromUserId(id: number): Promise<BankAccount[]> {
+        const accounts = await this.bankAccountRepository.find({ where: { userId: id } });
         return accounts;
     }
 }

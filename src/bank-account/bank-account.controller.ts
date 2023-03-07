@@ -11,8 +11,13 @@ export class BankAccountController {
     } 
 
     @Get(':id')
-    getAccounts(@Param('id') id: number) {
+    getAccountFromId(@Param('id') id: number) {
+        return this.bankAccountService.getAccountFromId(id);
+    }
+
+    @Get('user/:id')
+    getAccountsFromUserId(@Param('id') id: number) {
         return this.bankAccountService.getAccountsFromUserId(id);
     }
-    
+
 }
