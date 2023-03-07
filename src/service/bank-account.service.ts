@@ -68,7 +68,7 @@ export class BankAccountService {
     bankAccount: BankAccount,
     type: typeOperation,
   ): Promise<void> {
-    const newDebit = debit * 1.02;
+    const newDebit = debit * this.Constants.TAX_DAY;
 
     if (type === this.typeOperation.DEBIT) {
       bankAccount.solde -= newDebit;
