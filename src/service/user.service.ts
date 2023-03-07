@@ -30,11 +30,7 @@ export class UserService {
     return user.name;
   }
 
-  async hasTooManyAccounts(accounts : BankAccount[]): Promise<boolean> {
-    if (accounts.length >= this.Constants.MAX_ACCOUNTS_PER_USER) {
-      return true;
-    }
-    return false;
+  async hasTooManyAccounts(accounts: BankAccount[]): Promise<boolean> {
+    return accounts.length >= this.Constants.MAX_ACCOUNTS_PER_USER;
   }
-
 }

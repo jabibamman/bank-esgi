@@ -20,12 +20,12 @@ dotenv.config({ path: envDir });
     UserModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.PGHOST,
-      port: parseInt(process.env.PGPORT),
-      username: process.env.PGUSER,
-      password: process.env.PGPWD,
-      database: process.env.PGDB,
-      entities: [User, BankAccount],
+      host: process.env.DBHOST,
+      port: parseInt(process.env.DBPORT),
+      username: process.env.DBUSER,
+      password: process.env.DBPWD,
+      database: process.env.DBDB,
+      entities: [User, BankAccount], // liste des entités
       synchronize: true,
       logging: false, // affiche les requêtes SQL dans la console
     }),

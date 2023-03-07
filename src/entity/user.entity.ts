@@ -9,6 +9,6 @@ export class User {
   @Column()
   name: string;
 
-  @OneToMany(type => BankAccount, bankAccount => bankAccount.user)
+  @OneToMany((type) => BankAccount, (bankAccount) => bankAccount.user)
   bankAccounts: BankAccount[];
 }
