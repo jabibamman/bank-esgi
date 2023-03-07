@@ -20,7 +20,7 @@ dotenv.config({ path: envDir });
       username: process.env.PGUSER,
       password: process.env.PGPWD,
       database: process.env.PGDB,
-      entities: [],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
   ],
