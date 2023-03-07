@@ -9,6 +9,7 @@ import { User } from '../entity/user.entity';
 import { BankAccount } from '../entity/bankaccount.entity';
 import { BankAccountService } from '../service/bank-account.service';
 import { BankAccountController } from '../api/bank-account.controller';
+import { ConstantsService } from 'src/service/constants.service';
 
 const envDir = '.env';
 const dotenv = require('dotenv');
@@ -30,6 +31,6 @@ dotenv.config({ path: envDir });
     }),
   ],
   controllers: [AppController, UserController, BankAccountController],
-  providers: [AppService, UserService, BankAccountService],
+  providers: [AppService, UserService, BankAccountService, ConstantsService],
 })
 export class AppModule {}
