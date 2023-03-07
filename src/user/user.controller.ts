@@ -9,7 +9,7 @@ export class UserController {
     // users/:id
     // in the browser, go to http://localhost:3000/users/1
     @Get(':id/accounts')
-    getAccounts(@Param('id') id: string) {
+    getAccounts(@Param('id') id: number) {
         return this.userService.getAccounts(id);
     }
 }

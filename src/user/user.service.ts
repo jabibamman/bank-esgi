@@ -14,20 +14,24 @@ export class UserService {
     return this.usersRepository.find();
   }
 
-  findOne(id: number): Promise<User> {
+  findOneUser(id: number): Promise<User> {
+    console.log("ici", this.usersRepository.findOneBy({ id }));
+
     return this.usersRepository.findOneBy({ id });
   }
 
-  async remove(id: string): Promise<void> {
+  async remove(id: string): Promise<any> {
     await this.usersRepository.delete(id);
   }
 
-  async getUserName(id: number): Promise<any> {
-    return this.usersRepository.findOne(id);
+  async getUserName(id: number): Promise<User> {
+    console.log('getUserName');
+    return this.findOneUser(id);
   }
 
-  async getAccounts(id: number): Promise<any> {
-    return this.usersRepository.findOne(id);
+  async getAccounts(id: number): Promise<User> {
+    console.log('getAccounts');
+    return this.findOneUser(id); 
   }
 
 }
