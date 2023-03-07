@@ -26,11 +26,10 @@ export class UserService {
 
   async getUserName(id: number): Promise<User> {
     console.log('getUserName');
-    return this.findOneUser(id);
+    return this.findOneUser(id); 
   }
 
   async getAccounts(id: number): Promise<User> {
-    console.log('getAccounts');
     return this.findOneUser(id); 
   }
 
