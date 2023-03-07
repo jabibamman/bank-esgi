@@ -6,16 +6,20 @@ import { UserService } from './user/user.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+const envDir = '.env';
+const dotenv = require('dotenv');
+dotenv.config({ path: envDir });
+
 @Module({
   imports: [
     UserModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'bank_esgi',
+      host: process.env.PGHOST,
+      port: parseInt(process.env.PGPORT),
+      username: process.env.PGUSER,
+      password: process.env.PGPWD,
+      database: process.env.PGDB,
       entities: [],
       synchronize: true,
     }),
