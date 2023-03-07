@@ -5,12 +5,13 @@ import { UserService } from './user.service';
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
-
-    // users/:id
-    // in the browser, go to http://localhost:3000/users/1
-    @Get(':id/user')
+    @Get(':id')
     getAccounts(@Param('id') id: number) {
-        console.log('getAccounts for user ' + id);
+        return this.userService.findOneUser(id);
+    }
+
+    @Get(':id/name')
+    getUserName(@Param('id') id: number) {
         return this.userService.getUserName(id);
     }
 }
