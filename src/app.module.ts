@@ -7,6 +7,8 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
 import { BankAccount } from './entity/bankaccount.entity';
+import { BankAccountService } from './bank-account/bank-account.service';
+import { BankAccountController } from './bank-account/bank-account.controller';
 
 const envDir = '.env';
 const dotenv = require('dotenv');
@@ -24,9 +26,10 @@ dotenv.config({ path: envDir });
       database: process.env.PGDB,
       entities: [User, BankAccount],
       synchronize: true,
+      logging: false, // affiche les requêtes SQL dans la console
     }),
   ],
-  controllers: [AppController, UserController],
-  providers: [AppService, UserService],
+  controllers: [AppController, UserController, BankAccountController],
+  providers: [AppService, UserService, BankAccountService],
 })
 export class AppModule {}
