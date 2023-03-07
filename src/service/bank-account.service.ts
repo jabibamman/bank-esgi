@@ -68,7 +68,7 @@ export class BankAccountService {
     bankAccount: BankAccount,
     type: typeOperation,
   ): Promise<void> {
-    const newDebit = debit * 1.02;
+    const newDebit = debit * this.Constants.TAX_DAY;
 
     if (type === this.typeOperation.DEBIT) {
       bankAccount.solde -= newDebit;
@@ -89,14 +89,14 @@ export class BankAccountService {
 
   async calc(debit: number, solde: number, type: string): Promise<boolean> {
     let newSolde = solde;
-    const newDebit = debit * 1.02;
+    const newDebit = debit * this.Constants.TAX_DAY;
     if (type === this.typeOperation.DEBIT) {
       newSolde -= newDebit;
     } else if (type === this.typeOperation.CREDIT) {
       newSolde += newDebit;
     }
 
-    return newSolde >= 0 && newSolde <= 1000;
+    return newSolde >= this.Constants.MIN_ACCOUNT_BALANCE && newSolde <= this.Constants.MAX_ACCOUNT_BALANCE;
   }
 
 
