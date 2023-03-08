@@ -64,17 +64,22 @@ export class BankAccountService {
   }
 
   async action(
-    debit: number,
+    operation: number,
     bankAccount: BankAccount,
     type: typeOperation,
   ): Promise<void> {
-    const newDebit = debit * this.Constants.TAX_DAY;
 
-    if (type === this.typeOperation.DEBIT) {
-      bankAccount.solde -= newDebit;
-    } else if (type === this.typeOperation.CREDIT) {
-      bankAccount.solde += newDebit;
+    const newDebit = operation * this.setTax();
+
+    switch (type) {
+      case this.typeOperation.DEBIT:
+        bankAccount.solde -= newDebit;
+        break;
+      case this.typeOperation.CREDIT:
+        bankAccount.solde += newDebit;
+        break;
     }
+
 
     await this.updateOne(bankAccount);
   }
@@ -87,13 +92,16 @@ export class BankAccountService {
     await this.bankAccountRepository.update(bankAccount.id, bankAccount);
   }
 
-  async calc(debit: number, solde: number, type: string): Promise<boolean> {
+  async calc(operation: number, solde: number, type: string): Promise<boolean> {
     let newSolde = solde;
-    const newDebit = debit * this.Constants.TAX_DAY;
-    if (type === this.typeOperation.DEBIT) {
-      newSolde -= newDebit;
-    } else if (type === this.typeOperation.CREDIT) {
-      newSolde += newDebit;
+    const newDebit = operation * this.setTax();
+    switch (type) {
+      case this.typeOperation.DEBIT:
+        newSolde -= newDebit;
+        break;
+      case this.typeOperation.CREDIT:
+        newSolde += newDebit;
+        break;
     }
 
     return newSolde >= this.Constants.MIN_ACCOUNT_BALANCE && newSolde <= this.Constants.MAX_ACCOUNT_BALANCE;
@@ -106,6 +114,16 @@ export class BankAccountService {
         }
 
         return true;
+    }
+
+    getCurrentTime(): string {
+        const date = new Date();
+        const time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        return time >= '07:00:00' && time <= '21:00:00' ? 'day' : 'night';
+    }
+
+    setTax(): number {
+        return this.getCurrentTime() === 'day' ? this.Constants.TAX_DAY : this.Constants.TAX_NIGHT;
     }
 }
 

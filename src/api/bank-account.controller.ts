@@ -1,5 +1,4 @@
 import { Body, Controller, Get, Param, Put } from '@nestjs/common';
-import { BankAccount } from 'src/entity/bankaccount.entity';
 import { BankAccountService } from '../service/bank-account.service';
 
 @Controller('accounts')
