@@ -119,10 +119,10 @@ export class BankAccountService {
     getCurrentTime(): string {
         const date = new Date();
         const time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-        return time >= '07:00:00' && time <= '21:00:00' ? 'day' : 'night';
+        return time >= this.Constants.MIN_HOUR_DAY && time <= this.Constants.MAX_HOUR_DAY ? 'day' : 'night';
     }
 
-    setTax(): number {
+    setTax(): number {      
         return this.getCurrentTime() === 'day' ? this.Constants.TAX_DAY : this.Constants.TAX_NIGHT;
     }
 }
